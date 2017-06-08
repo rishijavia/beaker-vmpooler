@@ -1,14 +1,10 @@
 require 'stringify-hash'
-require 'beaker-vmpooler/helpers'
-require 'beaker-vmpooler/version'
+require 'beaker-vmpooler-vmpooler/version'
 
 
 module Beaker
   module DSL
     module Vmpooler
-
-      # include your modules from the beaker-vmpooler folder. Example below:
-      include Beaker::DSL::Vmpooler::Helpers
 
     end
   end

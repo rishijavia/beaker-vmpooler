@@ -26,7 +26,7 @@ A quick acceptance test, named because it has no pre-suites to run
     EOS
     task :quick do
 
-      sh("beaker",
+      sh("beaker-vmpooler",
          "--hosts", ENV['CONFIG'] || "acceptance/config/nodes/vagrant-ubuntu-1404.yml",
          "--tests", "acceptance/tests",
          "--log-level", "debug",
@@ -53,7 +53,7 @@ task :default => :test
 #
 ###########################################################
 DOCS_DAEMON = "yard server --reload --daemon --server thin"
-FOREGROUND_SERVER = 'bundle exec yard server --reload --verbose --server thin lib/beaker'
+FOREGROUND_SERVER = 'bundle exec yard server --reload --verbose --server thin lib/beaker-vmpooler'
 
 def running?( cmdline )
   ps = `ps -ef`

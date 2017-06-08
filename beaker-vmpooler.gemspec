@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 $LOAD_PATH.unshift File.expand_path("../lib", __FILE__)
-require 'beaker-vmpooler/version'
+require 'beaker-vmpooler-vmpooler/version'
 
 Gem::Specification.new do |s|
   s.name        = "beaker-vmpooler"

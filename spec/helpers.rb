@@ -55,7 +55,7 @@ module HostHelpers
                                                :datastore => 'instance0',
                                                :folder => 'Delivery/Quality Assurance/Staging/Dynamic',
                                                :resourcepool => 'delivery/Quality Assurance/Staging/Dynamic',
-                                               :gce_project => 'beaker-compute',
+                                               :gce_project => 'beaker-vmpooler-compute',
                                                :gce_keyfile => '/path/to/keyfile.p12',
                                                :gce_password => 'notasecret',
                                                :gce_email => '12345678910@developer.gserviceaccount.com' } )

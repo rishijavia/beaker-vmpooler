@@ -1,14 +1,14 @@
 require 'stringify-hash'
-require 'beaker-template/helpers'
-require 'beaker-template/version'
+require 'beaker-vmpooler/helpers'
+require 'beaker-vmpooler/version'
 
 
 module Beaker
   module DSL
-    module Template
+    module Vmpooler
 
-      # include your modules from the beaker-template folder. Example below:
-      include Beaker::DSL::Template::Helpers
+      # include your modules from the beaker-vmpooler folder. Example below:
+      include Beaker::DSL::Vmpooler::Helpers
 
     end
   end
@@ -17,7 +17,7 @@ end
 
 # Boilerplate DSL inclusion mechanism:
 # First we register our module with the Beaker DSL
-Beaker::DSL.register( Beaker::DSL::Template )
+Beaker::DSL.register( Beaker::DSL::Vmpooler )
 # Modules added into a module which has previously been included are not
 # retroactively included in the including class.
 #

@@ -1,6 +1,6 @@
 module Beaker
   module DSL
-    module Template
+    module Vmpooler
       module Helpers
 
         # include your helper methods here as simple method definitions

@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 $LOAD_PATH.unshift File.expand_path("../lib", __FILE__)
-require 'beaker-template/version'
+require 'beaker-vmpooler/version'
 
 Gem::Specification.new do |s|
-  s.name        = "beaker-template"
-  s.version     = Beaker::DSL::Template::Version::STRING
-  s.authors     = ["Puppetlabs"]
-  s.email       = ["qe-team@puppetlabs.com"]
-  s.homepage    = "https://github.com/puppetlabs/beaker-template"
+  s.name        = "beaker-vmpooler"
+  s.version     = Beaker::DSL::Vmpooler::Version::STRING
+  s.authors     = ["Rishi Javia"]
+  s.email       = ["rishi.javia@puppetlabs.com"]
+  s.homepage    = "https://github.com/rishijavia/beaker-vmpooler"
   s.summary     = %q{Beaker DSL Extension Helpers!}
   s.description = %q{For use for the Beaker acceptance testing tool}
   s.license     = 'Apache2'

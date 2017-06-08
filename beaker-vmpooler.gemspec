@@ -1,10 +1,9 @@
 # -*- encoding: utf-8 -*-
 $LOAD_PATH.unshift File.expand_path("../lib", __FILE__)
-require 'beaker-vmpooler-vmpooler/version'
 
 Gem::Specification.new do |s|
   s.name        = "beaker-vmpooler"
-  s.version     = Beaker::DSL::Vmpooler::Version::STRING
+  s.version     = '0.0.1'
   s.authors     = ["Rishi Javia"]
   s.email       = ["rishi.javia@puppetlabs.com"]
   s.homepage    = "https://github.com/rishijavia/beaker-vmpooler"
@@ -12,7 +11,7 @@ Gem::Specification.new do |s|
   s.description = %q{For use for the Beaker acceptance testing tool}
   s.license     = 'Apache2'
 
-  s.files         = `git ls-files`.split("\n")
+  s.files         = [ "lib/beaker/hypervisor/vmpooler.rb" ]
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]

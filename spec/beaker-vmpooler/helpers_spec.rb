@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 class ClassMixedWithDSLHelpers
-  include BeakerTestHelpers
 
   def logger
     RSpec::Mocks::Double.new('logger').as_null_object
@@ -11,15 +10,8 @@ end
 
 describe ClassMixedWithDSLHelpers do
 
-  describe 'release conditions' do
-
-    it 'has updated the version number from the original template' do
-      expect( Beaker::DSL::Vmpooler::Version::STRING ).to_not be === '0.0.1rc0'
-    end
-
-    it 'has a MAINTAINERS doc' do
-      expect( File.exist?( 'MAINTAINERS' ) ).to be_truthy
-    end
+  describe 'mytest' do
 
   end
+
 end

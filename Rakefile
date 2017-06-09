@@ -1,38 +1,38 @@
 require 'rspec/core/rake_task'
+require 'beaker'
+require_relative './lib/beaker/hypervisor/vmpooler'
 
 namespace :test do
 
   namespace :spec do
-
     desc "Run spec tests"
-    RSpec::Core::RakeTask.new(:run) do |t|
-      t.rspec_opts = ['--color']
-      t.pattern = 'spec/'
+      RSpec::Core::RakeTask.new(:run) do |t|
+        t.rspec_opts = ['--color']
+        t.pattern = 'spec/'
     end
-
-    desc "Run spec tests with coverage"
-    RSpec::Core::RakeTask.new(:coverage) do |t|
-      ENV['BEAKER_VMPOOLER_COVERAGE'] = 'y'
-      t.rspec_opts = ['--color']
-      t.pattern = 'spec/'
-    end
-
   end
 
   namespace :acceptance do
-
     desc <<-EOS
-A quick acceptance test, named because it has no pre-suites to run
+Runs the base beaker acceptance test using the hypervisor library
     EOS
     task :quick do
-
-      sh("beaker-vmpooler",
-         "--hosts", ENV['CONFIG'] || "acceptance/config/nodes/vagrant-ubuntu-1404.yml",
-         "--tests", "acceptance/tests",
-         "--log-level", "debug",
+      # setup & load_path of beaker's acceptance directory recursively
+      beaker_gem_spec = Gem::Specification.find_by_name('beaker')
+      beaker_gem_dir = beaker_gem_spec.gem_dir
+      beaker_acceptance_dir = File.join(beaker_gem_dir, 'acceptance')
+      Dir["#{beaker_acceptance_dir}/**/*.rb"].each { |f| $LOAD_PATH << f }
+      beaker_test_base_dir = File.join(beaker_gem_dir, 'acceptance/tests/base/host/host_test.rb')
+      $LOAD_PATH << beaker_test_base_dir
+      # puts $LOAD_PATH
+      # return
+      sh("beaker",
+         "--tests", beaker_test_base_dir,
+         "--log-level", "verbose",
+         "--hosts", "redhat7-64af-redhat7-64default.mdcal",
          "--keyfile", ENV['KEY'] || "#{ENV['HOME']}/.ssh/id_rsa")
     end
-
+    
   end
 
 end
@@ -53,7 +53,7 @@ task :default => :test
 #
 ###########################################################
 DOCS_DAEMON = "yard server --reload --daemon --server thin"
-FOREGROUND_SERVER = 'bundle exec yard server --reload --verbose --server thin lib/beaker-vmpooler'
+FOREGROUND_SERVER = 'bundle exec yard server --reload --verbose --server thin lib/beaker'
 
 def running?( cmdline )
   ps = `ps -ef`

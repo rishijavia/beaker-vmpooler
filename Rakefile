@@ -1,38 +1,32 @@
 require 'rspec/core/rake_task'
 require 'beaker'
-require_relative './lib/beaker/hypervisor/vmpooler'
+require 'beaker/hypervisor/vmpooler'
 
 namespace :test do
 
   namespace :spec do
-    desc "Run spec tests"
-      RSpec::Core::RakeTask.new(:run) do |t|
-        t.rspec_opts = ['--color']
-        t.pattern = 'spec/'
+  desc "Run spec tests"
+    RSpec::Core::RakeTask.new(:run) do |t|
+      t.rspec_opts = ['--color']
+      t.pattern = 'spec/'
     end
   end
 
-  namespace :acceptance do
-    desc <<-EOS
+  desc <<-EOS
 Runs the base beaker acceptance test using the hypervisor library
-    EOS
-    task :quick do
-      # setup & load_path of beaker's acceptance directory recursively
-      beaker_gem_spec = Gem::Specification.find_by_name('beaker')
-      beaker_gem_dir = beaker_gem_spec.gem_dir
-      beaker_acceptance_dir = File.join(beaker_gem_dir, 'acceptance')
-      Dir["#{beaker_acceptance_dir}/**/*.rb"].each { |f| $LOAD_PATH << f }
-      beaker_test_base_dir = File.join(beaker_gem_dir, 'acceptance/tests/base/host/host_test.rb')
-      $LOAD_PATH << beaker_test_base_dir
-      # puts $LOAD_PATH
-      # return
-      sh("beaker",
-         "--tests", beaker_test_base_dir,
-         "--log-level", "verbose",
-         "--hosts", "redhat7-64af-redhat7-64default.mdcal",
-         "--keyfile", ENV['KEY'] || "#{ENV['HOME']}/.ssh/id_rsa")
-    end
-    
+  EOS
+  task :acceptance do
+    # setup & load_path of beaker's acceptance base and lib directory
+    beaker_gem_spec = Gem::Specification.find_by_name('beaker')
+    beaker_gem_dir = beaker_gem_spec.gem_dir
+    beaker_test_base_dir = File.join(beaker_gem_dir, 'acceptance/tests/base')
+    load_path_option = File.join(beaker_gem_dir, 'acceptance/lib')
+    sh("beaker",
+       "--tests", beaker_test_base_dir,
+       "--log-level", "verbose",
+       "--hosts", "redhat7-64af-redhat7-64default.mdcal",
+       "--load-path", load_path_option,
+       "--keyfile", ENV['KEY'] || "#{ENV['HOME']}/.ssh/id_rsa")
   end
 
 end
@@ -41,7 +35,6 @@ end
 # these are the default tasks invoked when only the namespace is referenced.
 # they're needed because `task :default` in those blocks doesn't work as expected.
 task 'test:spec' => 'test:spec:run'
-task 'test:acceptance' => 'test:acceptance:quick'
 
 # global defaults
 task :test => 'test:spec'

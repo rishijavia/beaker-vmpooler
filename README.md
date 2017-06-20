@@ -4,7 +4,7 @@ Beaker library to use vmpooler hypervisor
 
 # How to use this wizardry
  
-This is a gem that allows you to use hosts with [vmpooler](https://github.com/puppetlabs/vmpooler) hypervisor with [beaker](https://github.com/puppetlabs/beaker). This gem is already included as [beaker dependency](https://github.com/puppetlabs/beaker/blob/master/beaker.gemspec#L59) for you, so you don't need to do anything special to use this gem's functionality with beaker.
+This is a gem that allows you to use hosts with [vmpooler](vmpooler.md) hypervisor with [beaker](https://github.com/puppetlabs/beaker). This gem is already included as [beaker dependency](https://github.com/puppetlabs/beaker/blob/master/beaker.gemspec#L59) for you, so you don't need to do anything special to use this gem's functionality with beaker.
 
 # Spec tests
 

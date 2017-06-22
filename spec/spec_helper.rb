@@ -2,6 +2,7 @@ require 'simplecov'
 require 'rspec/its'
 require 'beaker'
 require 'beaker/hypervisor/vmpooler'
+require 'beaker/hypervisor/vcloud'
 
 # setup & require beaker's spec_helper.rb
 beaker_gem_spec = Gem::Specification.find_by_name('beaker')

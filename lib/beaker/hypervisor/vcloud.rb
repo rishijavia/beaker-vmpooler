@@ -4,6 +4,14 @@ require 'beaker/hypervisor/vmpooler'
 module Beaker
   class Vcloud < Beaker::Hypervisor
 
+    def self.new(vcloud_hosts, options)
+      if options['pooling_api']
+        Beaker::Vmpooler.new(vcloud_hosts, options)
+      else
+        super
+      end
+    end
+
     def initialize(vcloud_hosts, options)
       @options = options
       @logger = options[:logger]

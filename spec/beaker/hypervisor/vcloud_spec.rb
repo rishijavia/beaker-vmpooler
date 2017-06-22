@@ -18,6 +18,13 @@ module Beaker
 
     describe "#provision" do
 
+      it 'instantiates vmpooler if pooling api is provided' do
+        opts = make_opts
+        opts[:pooling_api] = 'testpool'
+        hypervisor = Beaker::Vcloud.new( make_hosts, opts)
+        expect( hypervisor.class ).to be Beaker::Vmpooler
+      end
+
       it 'provisions hosts and add them to the pool' do
         MockVsphereHelper.powerOff
 

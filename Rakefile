@@ -26,7 +26,7 @@ Runs the base beaker acceptance test using the hypervisor library
        "--log-level", "verbose",
        "--hosts", "redhat7-64af-redhat7-64default.mdcal",
        "--load-path", load_path_option,
-       "--keyfile", ENV['KEY'] || "#{ENV['HOME']}/.ssh/id_rsa")
+       "--keyfile", ENV['KEY'] || "#{ENV['HOME']}/.ssh/id_rsa-acceptance")
   end
 
 end

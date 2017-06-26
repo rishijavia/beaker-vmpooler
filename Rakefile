@@ -20,12 +20,11 @@ Runs the base beaker acceptance test using the hypervisor library
     beaker_gem_spec = Gem::Specification.find_by_name('beaker')
     beaker_gem_dir = beaker_gem_spec.gem_dir
     beaker_test_base_dir = File.join(beaker_gem_dir, 'acceptance/tests/base')
-    load_path_option = File.join(beaker_gem_dir, 'acceptance/lib')
     sh("beaker",
        "--tests", beaker_test_base_dir,
        "--log-level", "verbose",
+       "--options-file", "test-options.rb",
        "--hosts", "redhat7-64af-redhat7-64default.mdcal",
-       "--load-path", load_path_option,
        "--keyfile", ENV['KEY'] || "#{ENV['HOME']}/.ssh/id_rsa-acceptance")
   end
 

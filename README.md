@@ -19,3 +19,9 @@ We run beaker's base acceptance tests with this library to see if the hypervisor
 ```bash
 bundle exec rake test:acceptance
 ```
+
+# Contributing
+
+Please refer to puppetlabs/beaker's [contributing](https://github.com/puppetlabs/beaker/blob/master/CONTRIBUTING.md) guide.
+
+If you are making changes in beaker-vmpooler and simultaneously in beaker, please *comment and link* your beaker fork repo and branch name in your PR of beaker-vmpooler for testing on CI.
